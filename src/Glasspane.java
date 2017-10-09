@@ -3,23 +3,42 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
 public class Glasspane extends JPanel implements ActionListener, KeyListener {
-	static int currentState = 1;
+
+	static BufferedImage bouncebubble;
+	static BufferedImage rockbubble;
+	static BufferedImage dirtbubble;
+	static BufferedImage powerbubble;
+	static BufferedImage powerupbubble;
 	Timer gameSpeed;
 	Manipulator mani;
-	int MENU_STATE;
-	int GAME_STATE;
-	int END_STATE;
+	static final int MENU_STATE = 0;
+	static final int GAME_STATE = 1;
+	static final int END_STATE = 2;
+	static int currentState = GAME_STATE;
+	Block dirty;
+	Block bouncy;
 
 	public Glasspane() {
+		System.out.println("constructor reached");
 		gameSpeed = new Timer(1000 / 150, this);
 		// arcade picture maker link
 		// https://www.imgonline.com.ua/eng/8bit-picture.php
+		try {
+			bouncebubble = ImageIO.read(this.getClass().getResourceAsStream("bounce.jpg"));
+			dirtbubble = ImageIO.read(this.getClass().getResourceAsStream("dirt.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -38,19 +57,6 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		repaint();
-		if (currentState == MENU_STATE) {
-			updateMenuState();
-		} else if (currentState == GAME_STATE) {
-			updateGameState();
-		} else if (currentState == END_STATE) {
-			updateEndState();
-		}
 	}
 
 	private void updateEndState() {
@@ -79,14 +85,14 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	}
 
-	private void drawEndState(Graphics delta) {
+	private void drawEndState(Graphics ilavait) {
 		// TODO Auto-generated method stub
 
 	}
 
-	private void drawGameState(Graphics delta) {
-		// TODO Auto-generated method stub
-
+	private void drawGameState(Graphics workhard) {
+		mani.draw(workhard);
+		System.out.println("drawn");
 	}
 
 	private void drawMenuState(Graphics delta) {
@@ -95,8 +101,26 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void startGame() {
+		System.out.println("started game");
 		gameSpeed.start();
 		mani = new Manipulator(this);
+		dirty = new Block(400, 200, 200, 200, 3);
+		bouncy = new Block(600, 200, 200, 200, 0);
+		mani.addObject(dirty);
+		mani.addObject(bouncy);
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("repaint");
+		repaint();
+		if (currentState == MENU_STATE) {
+			updateMenuState();
+		} else if (currentState == GAME_STATE) {
+			updateGameState();
+		} else if (currentState == END_STATE) {
+			updateEndState();
+		}
+	}
 }
