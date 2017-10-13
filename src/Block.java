@@ -18,13 +18,13 @@ public class Block extends Object_Shell {
 	public Block(int x, int y, int width, int height, int type_num) {
 		super(x, y, width, height);
 		scrollAffected = true;
-
 		this.typeNum = type_num;
+		setTypeBlowBubble(type_num);
 	}
 
 	@Override
 	public void update() {
-		setTypeBlowBubble(typeNum);
+
 	}
 
 	private void setTypeBlowBubble(int typeNumber) {
@@ -42,6 +42,8 @@ public class Block extends Object_Shell {
 		case 2:
 			species = dirt;
 			bubble = Glasspane.dirtbubble;
+			System.out.println("dirt block set");
+
 			break;
 		case 3:
 			species = power;
@@ -57,6 +59,7 @@ public class Block extends Object_Shell {
 			break;
 		default:
 			species = error;
+			bubble = Glasspane.errorbubble;
 			break;
 		}
 	}
@@ -92,10 +95,13 @@ public class Block extends Object_Shell {
 	public void draw(Graphics ohboy) {
 		// TODO Auto-generated method stub
 		System.out.println("Block draw call submitted by Block");
-		width = bubble.getWidth();
-		height = bubble.getHeight();
-		ohboy.drawImage(bubble, x, y, width, height, null);
-		ohboy.setColor(Color.red);
-		ohboy.drawRect(300, 500, 300, 300);
+		if (bubble != null) {
+			width = bubble.getWidth();
+			height = bubble.getHeight();
+			ohboy.drawImage(bubble, x, y, width, height, null);
+			ohboy.setColor(Color.red);
+			ohboy.drawRect(300, 500, 300, 300);
+		}
+		
 	}
 }

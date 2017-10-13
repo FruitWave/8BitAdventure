@@ -16,7 +16,7 @@ public class Runner {
 	public static void main(String[] args) {
 		Runner initiate_one = new Runner();
 		System.out.println(
-				"I am a doge, Daniel. If you can't accept me, you're a warwickiophobe and need to check your bloodlust priveleges.");
+				"TEST I am a doge, Daniel. If you can't accept me, you're a warwickiophobe and need to check your bloodlust priveleges.");
 	}
 
 	void run() {

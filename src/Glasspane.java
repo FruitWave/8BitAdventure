@@ -5,10 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
+import static org.junit.Assert.*;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import org.junit.Test;
 
 @SuppressWarnings("serial")
 public class Glasspane extends JPanel implements ActionListener, KeyListener {
@@ -18,6 +20,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	static BufferedImage dirtbubble;
 	static BufferedImage powerbubble;
 	static BufferedImage powerupbubble;
+	static BufferedImage errorbubble;
 	Timer gameSpeed;
 	Manipulator mani;
 	static final int MENU_STATE = 0;
@@ -35,6 +38,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		try {
 			bouncebubble = ImageIO.read(this.getClass().getResourceAsStream("bounce.jpg"));
 			dirtbubble = ImageIO.read(this.getClass().getResourceAsStream("dirt.jpg"));
+			errorbubble = ImageIO.read(this.getClass().getResourceAsStream("404_error.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,8 +68,13 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	}
 
-	private void updateGameState() {
-		mani.update();
+	// @Test
+	public void updateGameState() {
+		if (mani != null) {
+
+			mani.update();
+			// assertEquals(dirty.bubble, dirtbubble);
+		}
 	}
 
 	private void updateMenuState() {
@@ -90,9 +99,12 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	}
 
-	private void drawGameState(Graphics workhard) {
-		mani.draw(workhard);
-		System.out.println("drawn");
+	public void drawGameState(Graphics workhard) {
+		if (mani != null) {
+			mani.draw(workhard);
+
+			System.out.println("drawn");
+		}
 	}
 
 	private void drawMenuState(Graphics delta) {
@@ -104,7 +116,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		System.out.println("started game");
 		gameSpeed.start();
 		mani = new Manipulator(this);
-		dirty = new Block(400, 200, 200, 200, 3);
+		dirty = new Block(400, 200, 200, 200, 2);
 		bouncy = new Block(600, 200, 200, 200, 0);
 		mani.addObject(dirty);
 		mani.addObject(bouncy);
