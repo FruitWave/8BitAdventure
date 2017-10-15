@@ -14,12 +14,16 @@ public class Block extends Object_Shell {
 	String powerup = "powerup";
 	String cave = "cave";
 	String error = "error";
+	int hardness;
+	boolean solid;
 
 	public Block(int x, int y, int width, int height, int type_num) {
 		super(x, y, width, height);
 		scrollAffected = true;
 		this.typeNum = type_num;
 		setTypeBlowBubble(type_num);
+		hardness = 10;
+		solid = true;
 	}
 
 	@Override
@@ -28,7 +32,7 @@ public class Block extends Object_Shell {
 	}
 
 	private void setTypeBlowBubble(int typeNumber) {
-		//System.out.println("settypeblowbubble reached");
+		// System.out.println("settypeblowbubble reached");
 		switch (typeNumber) {
 		case 0:
 			species = bounce;
