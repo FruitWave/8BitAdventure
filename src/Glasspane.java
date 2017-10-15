@@ -5,12 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 @SuppressWarnings("serial")
 public class Glasspane extends JPanel implements ActionListener, KeyListener {
@@ -40,20 +40,17 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 			dirtbubble = ImageIO.read(this.getClass().getResourceAsStream("dirt.jpg"));
 			errorbubble = ImageIO.read(this.getClass().getResourceAsStream("404_error.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -118,8 +115,9 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		mani = new Manipulator(this);
 		dirty = new Block(400, 200, 200, 200, 2);
 		bouncy = new Block(600, 200, 200, 200, 0);
+		// mani.addObject(bouncy);
+
 		mani.addObject(dirty);
-		mani.addObject(bouncy);
 	}
 
 	@Override

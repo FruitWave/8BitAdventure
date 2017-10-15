@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Block extends Object_Shell {
 	int typeNum;
-	static BufferedImage bubble;
+	BufferedImage bubble;
 	String species;
 	String bounce = "bounce";
 	String rock = "rock";
@@ -53,10 +53,10 @@ public class Block extends Object_Shell {
 			species = powerup;
 			bubble = Glasspane.powerupbubble;
 			break;
-		case 5:
-			species = cave;
-			bubble = caveBubble();
-			break;
+		// case 5:
+		// species = cave;
+		// bubble = caveBubble();
+		// break;
 		default:
 			species = error;
 			bubble = Glasspane.errorbubble;
@@ -102,6 +102,6 @@ public class Block extends Object_Shell {
 			ohboy.setColor(Color.red);
 			ohboy.drawRect(300, 500, 300, 300);
 		}
-		
+
 	}
 }
