@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
+
 //import static org.junit.Assert.*;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -27,11 +29,11 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	static final int GAME_STATE = 1;
 	static final int END_STATE = 2;
 	static int currentState = GAME_STATE;
-	Block dirty;
-	Block bouncy;
+	Block justdirt;
+	Block yourbasicbounce;
 
 	public Glasspane() {
-		//System.out.println("constructor reached");
+		// System.out.println("constructor reached");
 		gameSpeed = new Timer(1000 / 150, this);
 		// arcade picture maker link
 		// https://www.imgonline.com.ua/eng/8bit-picture.php
@@ -107,14 +109,23 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void startGame() {
-		//System.out.println("started game");
+		// System.out.println("started game");
 		gameSpeed.start();
 		mani = new Manipulator(this);
-		dirty = new Block(400, 200, 200, 200, 2);
-		bouncy = new Block(600, 200, 200, 200, 0);
-		mani.addObject(bouncy);
-
-		mani.addObject(dirty);
+		int runwidth = Runner.width;
+		for (int i = 0; runwidth > 0; i++) {
+			runwidth -= dirtbubble.getWidth();
+			int r = new Random().nextInt(2);
+			r++;
+			if (r == 1) {
+				justdirt = new Block(i * dirtbubble.getWidth(), Runner.height - dirtbubble.getHeight(), 200, 200, 2);
+				mani.addObject(justdirt);
+			} else {
+				yourbasicbounce = new Block(i * dirtbubble.getWidth(), Runner.height - dirtbubble.getHeight(), 200, 200,
+						0);
+				mani.addObject(yourbasicbounce);
+			}
+		}
 	}
 
 	@Override
