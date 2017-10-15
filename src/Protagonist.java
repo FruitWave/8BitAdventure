@@ -58,5 +58,6 @@ public void update(){
 }
 public void draw(Graphics g){
 	g.drawImage(Glasspane.PlayerImg, x, y, width, height, null);
+	//test
 }
 }
