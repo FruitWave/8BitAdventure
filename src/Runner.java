@@ -27,6 +27,6 @@ public class Runner {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panelite.startGame();
-		System.out.println("runner");
+		// System.out.println("runner");
 	}
 }

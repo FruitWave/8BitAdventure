@@ -36,7 +36,7 @@ public class Manipulator {
 	public void draw(Graphics g) {
 		for (int i = 0; i < objects.size(); i++) {
 			Object_Shell o = objects.get(i);
-			System.out.println("object manager drawn");
+		//	System.out.println("object manager drawn");
 			o.draw(g);
 		}
 	}

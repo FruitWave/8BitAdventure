@@ -31,7 +31,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	Block bouncy;
 
 	public Glasspane() {
-		System.out.println("constructor reached");
+		//System.out.println("constructor reached");
 		gameSpeed = new Timer(1000 / 150, this);
 		// arcade picture maker link
 		// https://www.imgonline.com.ua/eng/8bit-picture.php
@@ -46,13 +46,6 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-//f
-		//grfg
-		//gr
-		///gr
-		//grrgrge
-		//uck
-		//grregre
 	}
 
 	@Override
@@ -62,35 +55,6 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// comment
-		// KeyReleeeeeeeeeeeeeez
 
 	}
 
@@ -133,8 +97,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	public void drawGameState(Graphics workhard) {
 		if (mani != null) {
 			mani.draw(workhard);
-
-			System.out.println("drawn");
+			// System.out.println("drawn");
 		}
 	}
 
@@ -144,7 +107,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void startGame() {
-		System.out.println("started game");
+		//System.out.println("started game");
 		gameSpeed.start();
 		mani = new Manipulator(this);
 		dirty = new Block(400, 200, 200, 200, 2);
@@ -157,7 +120,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("repaint");
+		// System.out.println("repaint");
 		repaint();
 		if (currentState == MENU_STATE) {
 			updateMenuState();

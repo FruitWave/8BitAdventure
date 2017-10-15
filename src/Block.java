@@ -28,11 +28,11 @@ public class Block extends Object_Shell {
 	}
 
 	private void setTypeBlowBubble(int typeNumber) {
-		System.out.println("settypeblowbubble reached");
+		//System.out.println("settypeblowbubble reached");
 		switch (typeNumber) {
 		case 0:
 			species = bounce;
-			System.out.println("its bouncy!");
+			// System.out.println("its bouncy!");
 			bubble = Glasspane.bouncebubble;
 			break;
 		case 1:
@@ -42,7 +42,7 @@ public class Block extends Object_Shell {
 		case 2:
 			species = dirt;
 			bubble = Glasspane.dirtbubble;
-			System.out.println("dirt block set");
+			// System.out.println("dirt block set");
 
 			break;
 		case 3:
@@ -53,10 +53,10 @@ public class Block extends Object_Shell {
 			species = powerup;
 			bubble = Glasspane.powerupbubble;
 			break;
-		// case 5:
-		// species = cave;
-		// bubble = caveBubble();
-		// break;
+		case 5:
+			species = cave;
+			bubble = caveBubble();
+			break;
 		default:
 			species = error;
 			bubble = Glasspane.errorbubble;
@@ -94,7 +94,7 @@ public class Block extends Object_Shell {
 	@Override
 	public void draw(Graphics ohboy) {
 		// TODO Auto-generated method stub
-		System.out.println("Block draw call submitted by Block");
+		// System.out.println("Block draw call submitted by Block");
 		if (bubble != null) {
 			width = bubble.getWidth();
 			height = bubble.getHeight();
