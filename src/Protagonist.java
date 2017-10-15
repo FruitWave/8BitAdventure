@@ -8,7 +8,6 @@ public class Protagonist extends Object_Shell {
 	boolean up;
 	boolean down;
 	boolean right;
-	boolean collision;
 
 	public Protagonist(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -16,35 +15,30 @@ public class Protagonist extends Object_Shell {
 		up = false;
 		down = false;
 		right = false;
-		collision = false;
+
 		xspeed = 0;
 		yspeed = 0;
 	}
 
 	public void update() {
-		if (collision) {
+		if (left) {
+			xspeed = -5;
+		}
+		if (right) {
+			xspeed = 5;
+		}
+		if (up) {
+			yspeed = -5;
+		}
+		if (down) {
+			yspeed = 5;
+		}
 
-		} else {
-			super.update();
-			if (left) {
-				xspeed = -5;
-			}
-			if (right) {
-				xspeed = 5;
-			}
-			if (up) {
-				yspeed = -5;
-			}
-			if (down) {
-				yspeed = 5;
-			}
-
-			if (!left && !right) {
-				xspeed = 0;
-			}
-			if (!up && !down) {
-				yspeed = 0;
-			}
+		if (!left && !right) {
+			xspeed = 0;
+		}
+		if (!up && !down) {
+			yspeed = 0;
 		}
 		// if(!up){
 		// yspeed=0;
@@ -58,7 +52,7 @@ public class Protagonist extends Object_Shell {
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(Glasspane.PlayerImg, x, y, width, height, null);
+		g.drawImage(Glasspane.playerImg, x, y, width, height, null);
 		// test
 	}
 }

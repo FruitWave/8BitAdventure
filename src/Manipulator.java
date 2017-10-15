@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Manipulator {
 
@@ -36,7 +37,7 @@ public class Manipulator {
 	public void draw(Graphics g) {
 		for (int i = 0; i < objects.size(); i++) {
 			Object_Shell o = objects.get(i);
-		//	System.out.println("object manager drawn");
+			// System.out.println("object manager drawn");
 			o.draw(g);
 		}
 	}
@@ -54,6 +55,38 @@ public class Manipulator {
 			Object_Shell o = objects.get(i);
 			if (o.scrollAffected) {
 				// scroll move code
+			}
+		}
+	}
+
+	public void checkCollision() {
+		for (int i = 0; i < objects.size(); i++) {
+			for (int j = i + 1; j < objects.size(); j++) {
+				// what is the purpose of the 'i' for loop enclosing the 'j' for
+				// loop?
+				Object_Shell o1 = objects.get(i);
+				Object_Shell o2 = objects.get(j);
+
+				if (o1.collisionArea.intersects(o2.collisionArea)) {
+
+					if ((o1 instanceof Protagonist && o2 instanceof Block)
+							|| (o2 instanceof Protagonist && o1 instanceof Block)) {
+						Bullet bullet = (o1 instanceof Bullet) ? (Bullet) o1 : (Bullet) o2;
+						Horde shotHorde = (o1 instanceof Horde) ? (Horde) o1 : (Horde) o2;
+						// if (hex.onScreenRoom.level % 5 == 0) {
+						// flynnbulletdamage = hex.onScreenRoom.level / 5;
+						// }
+						// shotHorde.health -= flynnbulletdamage;
+						shotHorde.health -= 1;
+						o2.isAlive = false;
+						if (shotHorde.health <= 0) {
+							shotHorde.isAlive = false;
+							Sketch.casualtyCount += shotHorde.deathPotential;
+
+						}
+					}
+
+				}
 			}
 		}
 	}

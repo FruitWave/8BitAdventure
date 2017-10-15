@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -29,6 +30,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	static final int GAME_STATE = 1;
 	static final int END_STATE = 2;
 	static int currentState = GAME_STATE;
+	static BufferedImage playerImg;
 	Block justdirt;
 	Block yourbasicbounce;
 
