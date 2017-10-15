@@ -47,7 +47,6 @@ public class Block extends Object_Shell {
 			species = dirt;
 			bubble = Glasspane.dirtbubble;
 			// System.out.println("dirt block set");
-
 			break;
 		case 3:
 			species = power;

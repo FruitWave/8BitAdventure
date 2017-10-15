@@ -72,9 +72,10 @@ public class Manipulator {
 							|| (o2 instanceof Protagonist && o1 instanceof Block)) {
 						Protagonist charlie = (o1 instanceof Protagonist) ? (Protagonist) o1 : (Protagonist) o2;
 						Block cubicon = (o1 instanceof Block) ? (Block) o1 : (Block) o2;
-						if (cubicon.hardness) {
-
-						}
+						// if (cubicon.hardness == 0) {
+						//
+						// }
+						charlie.speedThroughBlock = 10 - cubicon.hardness;
 					}
 
 				}

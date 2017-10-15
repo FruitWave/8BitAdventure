@@ -8,6 +8,7 @@ public class Protagonist extends Object_Shell {
 	boolean up;
 	boolean down;
 	boolean right;
+	int speedThroughBlock;
 
 	public Protagonist(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -15,9 +16,10 @@ public class Protagonist extends Object_Shell {
 		up = false;
 		down = false;
 		right = false;
-
 		xspeed = 0;
 		yspeed = 0;
+		speedThroughBlock = 10;
+		scrollAffected = true;
 	}
 
 	public void update() {
