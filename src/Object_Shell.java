@@ -1,7 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public abstract class Object_Shell {
+public class Object_Shell {
 	int x;
 	int y;
 	int width;
