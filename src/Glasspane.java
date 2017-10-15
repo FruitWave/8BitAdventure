@@ -113,6 +113,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	public void startGame() {
 		// System.out.println("started game");
 		gameSpeed.start();
+		
 		mani = new Manipulator(this);
 		int runwidth = Runner.width;
 		for (int i = 0; runwidth > 0; i++) {
