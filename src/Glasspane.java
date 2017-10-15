@@ -46,7 +46,13 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-
+//f
+		//grfg
+		//gr
+		///gr
+		//grrgrge
+		//uck
+		//grregre
 	}
 
 	@Override
