@@ -46,6 +46,10 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> cfbf3b37d0071b4b4d6290f745cc2a6c2c3cade7
 	}
 
 	@Override
@@ -55,6 +59,10 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+<<<<<<< HEAD
+=======
+		// TODO Auto-generated method stub
+>>>>>>> cfbf3b37d0071b4b4d6290f745cc2a6c2c3cade7
 
 	}
 
