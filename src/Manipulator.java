@@ -76,6 +76,7 @@ public class Manipulator {
 						//
 						// }
 						charlie.speedThroughBlock = 10 - cubicon.hardness;
+						charlie.yspeed -= charlie.speedThroughBlock;
 					}
 
 				}
