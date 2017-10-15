@@ -104,4 +104,7 @@ public class Block extends Object_Shell {
 		}
 
 	}
+	//I am a fucking sexual sun
+	//Also I support Initial Communism aka Inity Comitte
+	//We rise!
 }
