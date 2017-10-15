@@ -55,15 +55,9 @@ public class Protagonist extends Object_Shell {
 	}
 
 	public void draw(Graphics g) {
-<<<<<<< HEAD
-		// g.drawImage(Glasspane.playerImg, x, y, width, height, null);
-=======
-		//g.drawImage(Glasspane.playerImg, x, y, width, height, null);
-		g.setColor(Color.red);
->>>>>>> c98b9dae7a60f255c188d06d3d624cdb98a5b559
 		g.fillRect(x, y, width, height);
 		System.out.println("its drawing");
-		
+
 		// test
 	}
 }
