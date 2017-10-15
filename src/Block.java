@@ -24,7 +24,7 @@ public class Block extends Object_Shell {
 
 	@Override
 	public void update() {
-//hey this is a test yup
+
 	}
 
 	private void setTypeBlowBubble(int typeNumber) {
@@ -104,7 +104,14 @@ public class Block extends Object_Shell {
 		}
 
 	}
+<<<<<<< HEAD
 	//I am a fucking heterosexual sun
 	//Also I support Initial Communism aka Inity Comitte
-	//We rise!
+	//We rise! This is atest not fritz
+	
+=======
+	// I am a fucking heterosexual sun
+	// Also I support Initial Communism aka Inity Comitte
+	// We rise! I rise! You rise! We riseee!
+>>>>>>> 898ea0118e8fb5ff3cc305a6028c7c8ac590218a
 }
