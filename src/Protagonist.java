@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Protagonist extends Object_Shell {
@@ -55,7 +56,10 @@ public class Protagonist extends Object_Shell {
 
 	public void draw(Graphics g) {
 		//g.drawImage(Glasspane.playerImg, x, y, width, height, null);
+		g.setColor(Color.red);
 		g.fillRect(x, y, width, height);
+		System.out.println("its drawing");
+		
 		// test
 	}
 }
