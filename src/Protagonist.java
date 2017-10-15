@@ -42,19 +42,20 @@ public class Protagonist extends Object_Shell {
 		if (!up && !down) {
 			yspeed = 0;
 		}
-		// if(!up){
-		// yspeed=0;
-		// }
-		// if(!down){
-		// yspeed=0;
-		// }
+		 if(!up){
+		 yspeed=0;
+		 }
+		 if(!down){
+		 yspeed=0;
+		 }
 		x += xspeed;
 		y += yspeed;
 
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(Glasspane.playerImg, x, y, width, height, null);
+		//g.drawImage(Glasspane.playerImg, x, y, width, height, null);
+		g.fillRect(x, y, width, height);
 		// test
 	}
 }

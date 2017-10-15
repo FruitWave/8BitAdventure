@@ -33,6 +33,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	static BufferedImage playerImg;
 	Block justdirt;
 	Block yourbasicbounce;
+	Protagonist pro = new Protagonist(960, 540, 50, 50);
 
 	public Glasspane() {
 		// System.out.println("constructor reached");
