@@ -33,7 +33,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	static BufferedImage playerImg;
 	Block justdirt;
 	Block yourbasicbounce;
-	Protagonist pro = new Protagonist(960, 540, 50, 50);
+	Protagonist xeni;
 
 	public Glasspane() {
 		// System.out.println("constructor reached");
@@ -115,6 +115,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		gameSpeed.start();
 		
 		mani = new Manipulator(this);
+		xeni = new Protagonist(960, 540, 50, 50);
 		int runwidth = Runner.width;
 		for (int i = 0; runwidth > 0; i++) {
 			runwidth -= dirtbubble.getWidth();
@@ -128,6 +129,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 						0);
 				mani.addObject(yourbasicbounce);
 			}
+			mani.addObject(xeni);
 		}
 	}
 
