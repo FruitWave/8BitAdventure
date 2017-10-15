@@ -56,7 +56,7 @@ public class Protagonist extends Object_Shell {
 
 	public void draw(Graphics g) {
 		g.fillRect(x, y, width, height);
-		System.out.println("its drawing");
+		// System.out.println("its drawing");
 
 		// test
 	}
