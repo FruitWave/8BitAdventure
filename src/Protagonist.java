@@ -55,9 +55,9 @@ public class Protagonist extends Object_Shell {
 	}
 
 	public void draw(Graphics g) {
-		g.fillRect(x, y, width, height);
+		// g.fillRect(x, y, width, height);
 		// System.out.println("its drawing");
-
+		g.drawImage(Glasspane.playerImg, x, y, width, height, null);
 		// test
 	}
 }

@@ -29,13 +29,15 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	static BufferedImage powerbubble;
 	static BufferedImage powerupbubble;
 	static BufferedImage errorbubble;
+	static BufferedImage homeworld;
+	static BufferedImage playerImg;
 	Timer gameSpeed;
 	Manipulator mani;
 	static final int MENU_STATE = 0;
 	static final int GAME_STATE = 1;
 	static final int END_STATE = 2;
 	static int currentState = GAME_STATE;
-	static BufferedImage playerImg;
+
 	Block justdirt;
 	Block yourbasicbounce;
 	Protagonist xeni;
@@ -48,6 +50,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		try {
 			bouncebubble = ImageIO.read(this.getClass().getResourceAsStream("bounce.jpg"));
 			dirtbubble = ImageIO.read(this.getClass().getResourceAsStream("dirt.jpg"));
+			playerImg = ImageIO.read(this.getClass().getResourceAsStream("playerImg.png"));
 			errorbubble = ImageIO.read(this.getClass().getResourceAsStream("404_error.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -123,7 +126,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		gameSpeed.start();
 
 		mani = new Manipulator(this);
-		xeni = new Protagonist(960, 540, 50, 50);
+		xeni = new Protagonist(960, 540, 200, 250);
 		int runwidth = Runner.width;
 		for (int i = 0; runwidth > 0; i++) {
 			runwidth -= dirtbubble.getWidth();
