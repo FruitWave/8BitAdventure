@@ -12,9 +12,14 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javafx.scene.Camera;
+
 //import org.junit.Test;
 
+/*Ideas For Originality:
+ * 1. Environmental effects at intervals.
+ * 2. New worlds "caves", short-term quests per each cave. 
+ * 3. "Home", where you respawn, show off trophies and run "free" (non-discovered) quests
+ */
 @SuppressWarnings("serial")
 public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
@@ -34,7 +39,6 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	Block justdirt;
 	Block yourbasicbounce;
 	Protagonist xeni;
-	Camera al;
 
 	public Glasspane() {
 		// System.out.println("constructor reached");
@@ -58,7 +62,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-al.
+
 		}
 	}
 
