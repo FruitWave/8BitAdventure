@@ -45,7 +45,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	public Glasspane() {
 		// System.out.println("constructor reached");
-		gameSpeed = new Timer(1000 / 150, this);
+		gameSpeed = new Timer(1000 / 120, this);
 		movementStopper = new Timer(7, this);
 		// movementStopper.setInitialDelay(750);
 		// arcade picture maker link
@@ -72,29 +72,34 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		// || (e.getKeyCode() == KeyEvent.VK_D)) {
 		// movementStopper.stop();
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			xeni.up = true;
+			xeni.yspeed = -xeni.baseVertSpeed;
+			System.out.println("Up true");
 			// movementStopper.start();
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			xeni.left = true;
+			xeni.xspeed = -xeni.baseSpeed;
+			System.out.println("Left true");
 			// movementStopper.start();
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			xeni.down = true;
+			xeni.yspeed = xeni.baseVertSpeed;
+			System.out.println("Dwn true");
 			// movementStopper.start();
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
-			xeni.right = true;
+			xeni.xspeed = xeni.baseSpeed;
+			System.out.println("Right true");
 			// movementStopper.start();
 		}
+		// }
+		// if (e.getKeyCode() == KeyEvent.VK_E) {
+		// System.out.println("X speed is " + xeni.xspeed);
+		// System.out.println("Y speed is " + xeni.yspeed);
+		// System.out.println("\n \n \n \n ");
 		// }
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if ((xeni.up) || (xeni.down) || (xeni.right) || (xeni.left)) {
-			xeni.up = false;
-			xeni.down = false;
-			xeni.right = false;
-			xeni.left = false;
-		}
+		xeni.xspeed = 0;
+		xeni.yspeed = 0;
 	}
 
 	private void updateEndState() {
@@ -104,6 +109,9 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	// @Test
 	public void updateGameState() {
+		// System.out.println("X speed is " + xeni.xspeed);
+		// System.out.println("Y speed is " + xeni.yspeed);
+		// System.out.println("\n \n \n ");
 		if (mani != null) {
 
 			mani.update();
@@ -150,7 +158,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		gameSpeed.start();
 
 		mani = new Manipulator(this);
-		xeni = new Protagonist(960, 540, 200, 250);
+		xeni = new Protagonist(960, 540, 200, 250, 5, 2);
 		int runwidth = Runner.width;
 		for (int i = 0; runwidth > 0; i++) {
 			runwidth -= dirtbubble.getWidth();
@@ -181,13 +189,14 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 			} else if (currentState == END_STATE) {
 				updateEndState();
 			}
-		} else if (e.getSource() == movementStopper) {
-			if ((xeni.up) || (xeni.down) || (xeni.right) || (xeni.left)) {
-				xeni.up = false;
-				xeni.down = false;
-				xeni.right = false;
-				xeni.left = false;
-			}
 		}
+		// else if (e.getSource() == movementStopper) {
+		// if ((xeni.up) || (xeni.down) || (xeni.right) || (xeni.left)) {
+		// xeni.up = false;
+		// xeni.down = false;
+		// xeni.right = false;
+		// xeni.left = false;
+		// }
+		// }
 	}
 }

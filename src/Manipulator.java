@@ -31,7 +31,7 @@ public class Manipulator {
 			o.update();
 		}
 		checkCollision();
-		scroll(panelite.xeni.right);
+		scroll();
 		purgeObjects();
 	}
 
@@ -51,11 +51,12 @@ public class Manipulator {
 		}
 	}
 
-	private void scroll(boolean dir_right) {
+	private void scroll() {
 		for (int i = 0; i < objects.size(); i++) {
 			Object_Shell o = objects.get(i);
 			if (o.scrollAffected) {
 				o.x -= panelite.xeni.xspeed;
+				o.y -= panelite.xeni.yspeed;
 			}
 		}
 	}
@@ -69,7 +70,8 @@ public class Manipulator {
 				Object_Shell o1 = objects.get(i);
 				Object_Shell o2 = objects.get(j);
 
-				if (o1.collisionArea.intersects(o2.collisionArea)) {
+				if ((o1.collisionArea.intersects(o2.collisionArea))
+						|| (o2.collisionArea.intersects(o1.collisionArea))) {
 					// ERROR WITH LINE ABOVE: DOESN'T DETECT ANY COLLISIONS
 					System.out.println("collision detected");
 					if ((o1 instanceof Protagonist && o2 instanceof Block)
