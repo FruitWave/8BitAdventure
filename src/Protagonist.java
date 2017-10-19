@@ -17,6 +17,7 @@ public class Protagonist extends Object_Shell {
 		up = false;
 		down = false;
 		right = false;
+		
 		xspeed = 0;
 		yspeed = 0;
 		speedThroughBlock = 10;
@@ -25,16 +26,20 @@ public class Protagonist extends Object_Shell {
 
 	public void update() {
 		if (left) {
-			xspeed = -5;
+			xspeed = -1;
+			right = false;
 		}
 		if (right) {
-			xspeed = 5;
+			xspeed = 1;
+			left = false;
 		}
 		if (up) {
-			yspeed = -5;
+			yspeed = -1;
+			down = false;
 		}
 		if (down) {
-			yspeed = 5;
+			yspeed = 1;
+			up = false;
 		}
 
 		if (!left && !right) {
@@ -43,15 +48,18 @@ public class Protagonist extends Object_Shell {
 		if (!up && !down) {
 			yspeed = 0;
 		}
-		if (!up) {
-			yspeed = 0;
-		}
-		if (!down) {
-			yspeed = 0;
-		}
+		// if (!up) {
+		// yspeed = 0;
+		// }
+		// if (!down) {
+		// yspeed = 0;
+		// }
 		x += xspeed;
 		y += yspeed;
-
+		// left = false;
+		// right = false;
+		// up = false;
+		// down = false;
 	}
 
 	public void draw(Graphics g) {

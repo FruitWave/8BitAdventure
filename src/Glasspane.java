@@ -41,10 +41,13 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	Block justdirt;
 	Block yourbasicbounce;
 	Protagonist xeni;
+	Timer movementStopper;
 
 	public Glasspane() {
 		// System.out.println("constructor reached");
 		gameSpeed = new Timer(1000 / 150, this);
+		movementStopper = new Timer(7, this);
+		// movementStopper.setInitialDelay(750);
 		// arcade picture maker link
 		// https://www.imgonline.com.ua/eng/8bit-picture.php
 		try {
@@ -64,13 +67,34 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		// if ((e.getKeyCode() == KeyEvent.VK_W) || (e.getKeyCode() == KeyEvent.VK_A) ||
+		// (e.getKeyCode() == KeyEvent.VK_S)
+		// || (e.getKeyCode() == KeyEvent.VK_D)) {
+		// movementStopper.stop();
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-
+			xeni.up = true;
+			// movementStopper.start();
+		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			xeni.left = true;
+			// movementStopper.start();
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			xeni.down = true;
+			// movementStopper.start();
+		} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			xeni.right = true;
+			// movementStopper.start();
 		}
+		// }
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if ((xeni.up) || (xeni.down) || (xeni.right) || (xeni.left)) {
+			xeni.up = false;
+			xeni.down = false;
+			xeni.right = false;
+			xeni.left = false;
+		}
 	}
 
 	private void updateEndState() {
@@ -148,13 +172,22 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		// System.out.println("repaint");
-		repaint();
-		if (currentState == MENU_STATE) {
-			updateMenuState();
-		} else if (currentState == GAME_STATE) {
-			updateGameState();
-		} else if (currentState == END_STATE) {
-			updateEndState();
+		if (e.getSource() == gameSpeed) {
+			repaint();
+			if (currentState == MENU_STATE) {
+				updateMenuState();
+			} else if (currentState == GAME_STATE) {
+				updateGameState();
+			} else if (currentState == END_STATE) {
+				updateEndState();
+			}
+		} else if (e.getSource() == movementStopper) {
+			if ((xeni.up) || (xeni.down) || (xeni.right) || (xeni.left)) {
+				xeni.up = false;
+				xeni.down = false;
+				xeni.right = false;
+				xeni.left = false;
+			}
 		}
 	}
 }
