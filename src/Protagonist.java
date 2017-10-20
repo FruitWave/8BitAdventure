@@ -8,7 +8,7 @@ public class Protagonist extends Object_Shell {
 	boolean left;
 	boolean up;
 	boolean down;
-	boolean right;
+	boolean isgoingright;
 	int speedThroughBlock;
 	int baseSpeed;
 	int baseVertSpeed;
@@ -18,8 +18,9 @@ public class Protagonist extends Object_Shell {
 		// left = false;
 		// up = false;
 		// down = false;
-		right = false;
+		isgoingright = false;
 		baseSpeed = baseSpeedo;
+		baseVertSpeed = baseYSpeed;
 		xspeed = 0;
 		// yspeed = 0;
 		speedThroughBlock = 10;
@@ -27,7 +28,7 @@ public class Protagonist extends Object_Shell {
 	}
 
 	public void update() {
-		right = xspeed > 0 ? true : false;
+		isgoingright = xspeed > 0 ? true : false;
 		// if (left) {
 		// xspeed = -1;
 		// right = false;
@@ -62,7 +63,7 @@ public class Protagonist extends Object_Shell {
 		 * x += xspeed;
 		 */
 
-		y += yspeed;
+		//y += yspeed;
 
 		// left = false;
 		// right = false;

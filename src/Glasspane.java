@@ -46,7 +46,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	public Glasspane() {
 		// System.out.println("constructor reached");
 		gameSpeed = new Timer(1000 / 120, this);
-		movementStopper = new Timer(7, this);
+		// movementStopper = new Timer(7, this);
 		// movementStopper.setInitialDelay(750);
 		// arcade picture maker link
 		// https://www.imgonline.com.ua/eng/8bit-picture.php
@@ -75,15 +75,18 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 			xeni.yspeed = -xeni.baseVertSpeed;
 			System.out.println("Up true");
 			// movementStopper.start();
-		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+		}
+		if (e.getKeyCode() == KeyEvent.VK_A) {
 			xeni.xspeed = -xeni.baseSpeed;
 			System.out.println("Left true");
 			// movementStopper.start();
-		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+		}
+		if (e.getKeyCode() == KeyEvent.VK_S) {
 			xeni.yspeed = xeni.baseVertSpeed;
 			System.out.println("Dwn true");
 			// movementStopper.start();
-		} else if (e.getKeyCode() == KeyEvent.VK_D) {
+		}
+		if (e.getKeyCode() == KeyEvent.VK_D) {
 			xeni.xspeed = xeni.baseSpeed;
 			System.out.println("Right true");
 			// movementStopper.start();
@@ -180,16 +183,16 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		// System.out.println("repaint");
-		if (e.getSource() == gameSpeed) {
-			repaint();
-			if (currentState == MENU_STATE) {
-				updateMenuState();
-			} else if (currentState == GAME_STATE) {
-				updateGameState();
-			} else if (currentState == END_STATE) {
-				updateEndState();
-			}
+		// if (e.getSource() == gameSpeed) {
+		repaint();
+		if (currentState == MENU_STATE) {
+			updateMenuState();
+		} else if (currentState == GAME_STATE) {
+			updateGameState();
+		} else if (currentState == END_STATE) {
+			updateEndState();
 		}
+		// }
 		// else if (e.getSource() == movementStopper) {
 		// if ((xeni.up) || (xeni.down) || (xeni.right) || (xeni.left)) {
 		// xeni.up = false;
