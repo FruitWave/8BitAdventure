@@ -31,7 +31,7 @@ public class Manipulator {
 			o.update();
 		}
 		checkCollision();
-		// scroll(panelite.xeni.isgoingright, panelite.xeni.isgoingdown);
+		scroll(panelite.xeni.isgoingright, panelite.xeni.isgoingdown);
 		// purgeObjects();
 	}
 

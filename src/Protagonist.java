@@ -81,11 +81,12 @@ public class Protagonist extends Object_Shell {
 		// yspeed = 0;
 		// }
 
-		x += xspeed;
+		/*
+		 * x += xspeed;
+		 * 
+		 * y += yspeed;
+		 */
 
-		y += yspeed;
-
-		
 	}
 
 	public void draw(Graphics g) {
