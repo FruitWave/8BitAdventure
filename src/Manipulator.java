@@ -31,8 +31,8 @@ public class Manipulator {
 			o.update();
 		}
 		checkCollision();
-		scroll();
-		purgeObjects();
+		// scroll(panelite.xeni.isgoingright, panelite.xeni.isgoingdown);
+		// purgeObjects();
 	}
 
 	public void draw(Graphics g) {
@@ -51,29 +51,42 @@ public class Manipulator {
 		}
 	}
 
-	private void scroll() {
+	private void scroll(boolean isMovingRight, boolean isMovingDown) {
 		for (int i = 0; i < objects.size(); i++) {
 			Object_Shell o = objects.get(i);
 			if (o.scrollAffected) {
-				o.x -= panelite.xeni.xspeed;
-				o.y -= panelite.xeni.yspeed;
+				if (!panelite.xeni.stoppedx) {
+					o.x += isMovingRight ? 0 - panelite.xeni.xspeed : panelite.xeni.xspeed;
+					System.out.println("reached x move");
+					// syso works^
+					// because if stopped x, do not scroll x
+				}
+				if (!panelite.xeni.stoppedy) {
+
+					o.y += isMovingDown ? 0 - panelite.xeni.yspeed : panelite.xeni.xspeed;
+					System.out.println("reached y move");
+					// syso works^
+
+					// because if stopped y, do not scroll y
+				}
 			}
 		}
 	}
 
 	public void checkCollision() {
-		// System.out.println("checkcollision");
 		for (int i = 0; i < objects.size(); i++) {
 			for (int j = i + 1; j < objects.size(); j++) {
-				// what is the purpose of the 'i' for loop enclosing the 'j' for
-				// loop?
+
+				// the code does get here!
+
 				Object_Shell o1 = objects.get(i);
 				Object_Shell o2 = objects.get(j);
-
 				if ((o1.collisionArea.intersects(o2.collisionArea))
 						|| (o2.collisionArea.intersects(o1.collisionArea))) {
-					// ERROR WITH LINE ABOVE: DOESN'T DETECT ANY COLLISIONS
-					System.out.println("collision detected");
+					System.out.println("checkcollision");
+					// LINE ABOVE DOESN'T DETECT ANY COLLISIONS
+					// THE ISSUE HAS TO BE HERE, BECAUSE I HAVE CREATED A FEW GAMES WITH THE SAME
+					// CODE YOU DO NOT SEE AND ALL THE INTERSECT STUFF IS THE SAME
 					if ((o1 instanceof Protagonist && o2 instanceof Block)
 							|| (o2 instanceof Protagonist && o1 instanceof Block)) {
 						System.out.println("Protagonist & Block");

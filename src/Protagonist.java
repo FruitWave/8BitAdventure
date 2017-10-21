@@ -5,30 +5,52 @@ import java.awt.Graphics;
 public class Protagonist extends Object_Shell {
 	int xspeed;
 	int yspeed;
-	boolean left;
-	boolean up;
-	boolean down;
+	/*
+	 * boolean left; boolean up; boolean down;
+	 */
 	boolean isgoingright;
+	boolean isgoingdown;
 	int speedThroughBlock;
 	int baseSpeed;
 	int baseVertSpeed;
+	boolean stoppedx;
+	boolean stoppedy;
 
 	public Protagonist(int x, int y, int width, int height, int baseSpeedo, int baseYSpeed) {
 		super(x, y, width, height);
 		// left = false;
 		// up = false;
 		// down = false;
+		stoppedx = true;
+		stoppedy = true;
 		isgoingright = false;
 		baseSpeed = baseSpeedo;
 		baseVertSpeed = baseYSpeed;
 		xspeed = 0;
-		// yspeed = 0;
+		yspeed = 0;
 		speedThroughBlock = 10;
 		scrollAffected = false;
 	}
 
 	public void update() {
-		isgoingright = xspeed > 0 ? true : false;
+		if (xspeed != 0) {
+			stoppedx = false;
+		} else {
+			stoppedx = true;
+		}
+
+		if (yspeed != 0) {
+			stoppedy = false;
+		} else {
+			stoppedy = true;
+		}
+
+		if (!stoppedy) {
+			isgoingdown = yspeed > 0 ? true : false;
+		}
+		if (!stoppedx) {
+			isgoingright = xspeed > 0 ? true : false;
+		}
 		// if (left) {
 		// xspeed = -1;
 		// right = false;
@@ -59,22 +81,14 @@ public class Protagonist extends Object_Shell {
 		// yspeed = 0;
 		// }
 
-		/*
-		 * x += xspeed;
-		 */
+		x += xspeed;
 
-		//y += yspeed;
+		y += yspeed;
 
-		// left = false;
-		// right = false;
-		// up = false;
-		// down = false;
+		
 	}
 
 	public void draw(Graphics g) {
-		// g.fillRect(x, y, width, height);
-		// System.out.println("its drawing");
 		g.drawImage(Glasspane.playerImg, x, y, width, height, null);
-		// test
 	}
 }

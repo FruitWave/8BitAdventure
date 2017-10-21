@@ -37,11 +37,9 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 	static final int GAME_STATE = 1;
 	static final int END_STATE = 2;
 	static int currentState = GAME_STATE;
-
 	Block justdirt;
 	Block yourbasicbounce;
 	Protagonist xeni;
-	Timer movementStopper;
 
 	public Glasspane() {
 		// System.out.println("constructor reached");
@@ -67,28 +65,29 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		System.out.println("Keycode: " + e.getKeyCode());
 		// if ((e.getKeyCode() == KeyEvent.VK_W) || (e.getKeyCode() == KeyEvent.VK_A) ||
 		// (e.getKeyCode() == KeyEvent.VK_S)
 		// || (e.getKeyCode() == KeyEvent.VK_D)) {
 		// movementStopper.stop();
 		if (e.getKeyCode() == KeyEvent.VK_W) {
 			xeni.yspeed = -xeni.baseVertSpeed;
-			System.out.println("Up true");
+			System.out.println("Up true. Y speed is " + xeni.yspeed);
 			// movementStopper.start();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_A) {
 			xeni.xspeed = -xeni.baseSpeed;
-			System.out.println("Left true");
+			System.out.println("Left true. X speed is " + xeni.xspeed);
 			// movementStopper.start();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_S) {
 			xeni.yspeed = xeni.baseVertSpeed;
-			System.out.println("Dwn true");
+			System.out.println("Dwn true. Y speed is " + xeni.yspeed);
 			// movementStopper.start();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D) {
 			xeni.xspeed = xeni.baseSpeed;
-			System.out.println("Right true");
+			System.out.println("Right true. X speed is " + xeni.xspeed);
 			// movementStopper.start();
 		}
 		// }
@@ -158,10 +157,11 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	public void startGame() {
 		// System.out.println("started game");
+		mani = new Manipulator(this);
+		// what is the purpose of the 'i' for loop enclosing the 'j' for
+		// loop?	 ANSWER: 2-dimensional hashmap basically (think matrix of objects)
 		gameSpeed.start();
 
-		mani = new Manipulator(this);
-		xeni = new Protagonist(960, 540, 200, 250, 5, 2);
 		int runwidth = Runner.width;
 		for (int i = 0; runwidth > 0; i++) {
 			runwidth -= dirtbubble.getWidth();
@@ -175,8 +175,10 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 						0);
 				mani.addObject(yourbasicbounce);
 			}
-			mani.addObject(xeni);
+
 		}
+		xeni = new Protagonist(960, 540, 200, 250, 5, 2);
+		mani.addObject(xeni);
 	}
 
 	@Override
@@ -184,6 +186,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		// System.out.println("repaint");
 		// if (e.getSource() == gameSpeed) {
+		// System.out.println("action performed ");
 		repaint();
 		if (currentState == MENU_STATE) {
 			updateMenuState();

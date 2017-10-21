@@ -28,7 +28,7 @@ public class Block extends Object_Shell {
 
 	@Override
 	public void update() {
-
+		//super.update();
 	}
 
 	private void setTypeBlowBubble(int typeNumber) {
