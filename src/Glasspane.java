@@ -70,25 +70,25 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		// (e.getKeyCode() == KeyEvent.VK_S)
 		// || (e.getKeyCode() == KeyEvent.VK_D)) {
 		// movementStopper.stop();
-		if (e.getKeyCode() == KeyEvent.VK_W) {
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			xeni.yspeed = -xeni.baseVertSpeed;
-			System.out.println("Up true. Y speed is " + xeni.yspeed);
-			// movementStopper.start();
+			// System.out.println("Up true. Y speed is " + xeni.yspeed);
+
 		}
-		if (e.getKeyCode() == KeyEvent.VK_A) {
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			xeni.xspeed = -xeni.baseSpeed;
-			System.out.println("Left true. X speed is " + xeni.xspeed);
-			// movementStopper.start();
+			// System.out.println("Left true. X speed is " + xeni.xspeed);
+
 		}
-		if (e.getKeyCode() == KeyEvent.VK_S) {
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			xeni.yspeed = xeni.baseVertSpeed;
-			System.out.println("Dwn true. Y speed is " + xeni.yspeed);
-			// movementStopper.start();
+			// System.out.println("Dwn true. Y speed is " + xeni.yspeed);
+
 		}
-		if (e.getKeyCode() == KeyEvent.VK_D) {
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			xeni.xspeed = xeni.baseSpeed;
-			System.out.println("Right true. X speed is " + xeni.xspeed);
-			// movementStopper.start();
+			// System.out.println("Right true. X speed is " + xeni.xspeed);
+
 		}
 		// }
 		// if (e.getKeyCode() == KeyEvent.VK_E) {
@@ -159,7 +159,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		// System.out.println("started game");
 		mani = new Manipulator(this);
 		// what is the purpose of the 'i' for loop enclosing the 'j' for
-		// loop?	 ANSWER: 2-dimensional hashmap basically (think matrix of objects)
+		// loop? ANSWER: 2-dimensional hashmap basically (think matrix of objects)
 		gameSpeed.start();
 
 		int runwidth = Runner.width;
@@ -177,7 +177,7 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 			}
 
 		}
-		xeni = new Protagonist(960, 540, 200, 250, 5, 2);
+		xeni = new Protagonist(960, 540, 200, 250, 5, 5);
 		mani.addObject(xeni);
 	}
 

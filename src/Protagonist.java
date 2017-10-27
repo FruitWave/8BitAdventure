@@ -33,6 +33,7 @@ public class Protagonist extends Object_Shell {
 	}
 
 	public void update() {
+		super.update();
 		if (xspeed != 0) {
 			stoppedx = false;
 		} else {

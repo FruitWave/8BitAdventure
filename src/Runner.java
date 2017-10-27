@@ -3,8 +3,10 @@ import javax.swing.JFrame;
 
 public class Runner {
 	JFrame frame;
-	static final int width = 1920;
-	static final int height = 1080;
+
+	static final int width = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+	static final int height = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+
 	Glasspane panelite;
 
 	public Runner() {

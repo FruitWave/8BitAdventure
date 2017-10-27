@@ -56,15 +56,15 @@ public class Manipulator {
 			Object_Shell o = objects.get(i);
 			if (o.scrollAffected) {
 				if (!panelite.xeni.stoppedx) {
-					o.x += isMovingRight ? 0 - panelite.xeni.xspeed : panelite.xeni.xspeed;
-					System.out.println("reached x move");
+					o.x += -panelite.xeni.xspeed;
+					// System.out.println("reached x move");
 					// syso works^
 					// because if stopped x, do not scroll x
 				}
 				if (!panelite.xeni.stoppedy) {
 
-					o.y += isMovingDown ? 0 - panelite.xeni.yspeed : panelite.xeni.xspeed;
-					System.out.println("reached y move");
+					o.y += -panelite.xeni.yspeed;
+					// System.out.println("reached y move");
 					// syso works^
 
 					// because if stopped y, do not scroll y
@@ -78,7 +78,7 @@ public class Manipulator {
 			for (int j = i + 1; j < objects.size(); j++) {
 
 				// the code does get here!
-
+				// System.out.println("gotten tooo");
 				Object_Shell o1 = objects.get(i);
 				Object_Shell o2 = objects.get(j);
 				if ((o1.collisionArea.intersects(o2.collisionArea))
