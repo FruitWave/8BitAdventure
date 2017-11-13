@@ -54,7 +54,18 @@ public class Manipulator {
 	private void scroll(boolean isMovingRight, boolean isMovingDown) {
 		for (int i = 0; i < objects.size(); i++) {
 			Object_Shell o = objects.get(i);
+
 			if (o.scrollAffected) {
+				if ((panelite.xeni.x != Runner.width / 2) && (!panelite.xeni.stoppedx)) {
+					int priordist = panelite.xeni.x - o.x;
+					panelite.xeni.x = Runner.width / 2;
+					o.x = panelite.xeni.x - priordist;
+				}
+				if ((panelite.xeni.y != Runner.height / 2) && (!panelite.xeni.stoppedy)) {
+					int priordisty = panelite.xeni.y - o.y;
+					panelite.xeni.y = Runner.height / 2;
+					o.y = panelite.xeni.y - priordisty;
+				}
 				if (!panelite.xeni.stoppedx) {
 					o.x += -panelite.xeni.xspeed;
 					// System.out.println("reached x move");
@@ -69,6 +80,7 @@ public class Manipulator {
 
 					// because if stopped y, do not scroll y
 				}
+
 			}
 		}
 	}
@@ -76,41 +88,57 @@ public class Manipulator {
 	public void checkCollision() {
 		for (int i = 0; i < objects.size(); i++) {
 			for (int j = i + 1; j < objects.size(); j++) {
-
-				// the code does get here!
-				// System.out.println("gotten tooo");
 				Object_Shell o1 = objects.get(i);
 				Object_Shell o2 = objects.get(j);
 				if ((o1.collisionArea.intersects(o2.collisionArea))
 						|| (o2.collisionArea.intersects(o1.collisionArea))) {
-					System.out.println("checkcollision");
-					// LINE ABOVE DOESN'T DETECT ANY COLLISIONS
-					// THE ISSUE HAS TO BE HERE, BECAUSE I HAVE CREATED A FEW GAMES WITH THE SAME
-					// CODE YOU DO NOT SEE AND ALL THE INTERSECT STUFF IS THE SAME
+					// System.out.println("checkcollision");
 					if ((o1 instanceof Protagonist && o2 instanceof Block)
 							|| (o2 instanceof Protagonist && o1 instanceof Block)) {
-						System.out.println("Protagonist & Block");
+						// System.out.println("Protagonist & Block");
 						Protagonist charlie = (o1 instanceof Protagonist) ? (Protagonist) o1 : (Protagonist) o2;
 						Block cubicon = (o1 instanceof Block) ? (Block) o1 : (Block) o2;
+						// charlie.onBlock = true;
+						// charlie.inAir = false;
 						// if (cubicon.hardness == 0) {
 						//
 						// }
-						charlie.speedThroughBlock = 10 - cubicon.hardness;
-						// charlie.yspeed = charlie.speedThroughBlock;
-						if (charlie.xspeed != 0) {
-							if (charlie.xspeed > 0) {
-								charlie.xspeed -= charlie.speedThroughBlock;
-							} else if (charlie.xspeed < 0) {
-								charlie.xspeed += charlie.speedThroughBlock;
-							}
+						charlie.speedThroughBlock = charlie.xspeed / 2;
+						if (charlie.xspeed > 0) {
+							charlie.xspeed = charlie.speedThroughBlock;
+						} else if (charlie.xspeed < 0) {
+							charlie.xspeed = -charlie.speedThroughBlock;
 						}
-						if (charlie.yspeed != 0) {
-							if (charlie.yspeed > 0) {
-								charlie.yspeed -= charlie.speedThroughBlock;
-							} else if (charlie.yspeed < 0) {
-								charlie.yspeed += charlie.speedThroughBlock;
-							}
+						if (charlie.yspeed > 0) {
+							charlie.yspeed = charlie.speedThroughBlock;
+						} else if (charlie.yspeed < 0) {
+							charlie.yspeed = -charlie.speedThroughBlock;
 						}
+						/*
+						 * charlie.speedThroughBlock = cubicon.solid ? (charlie.xspeed != 0 ?
+						 * charlie.xspeed : charlie.yspeed) : 5; if (charlie.xspeed != 0) { if
+						 * (charlie.xspeed > 0) { charlie.xspeed -= charlie.speedThroughBlock;
+						 * System.out.println(charlie.xspeed); } else if (charlie.xspeed < 0) {
+						 * charlie.xspeed += charlie.speedThroughBlock; } } if (charlie.yspeed != 0) {
+						 * if (charlie.yspeed > 0) { charlie.yspeed -= charlie.speedThroughBlock; } else
+						 * if (charlie.yspeed < 0) { charlie.yspeed += charlie.speedThroughBlock; } }
+						 */
+
+						// // charlie.yspeed = charlie.speedThroughBlock;
+						/*
+						 * if (cubicon.solid) { // if (charlie.onBlock = true) { // charlie.yspeed = 0;
+						 * // } if ((charlie.y != cubicon.y + cubicon.height) && (charlie.y +
+						 * charlie.height != cubicon.y)) {
+						 * 
+						 * if (charlie.y < ((cubicon.height / 2) + cubicon.y)) { charlie.y = cubicon.y -
+						 * charlie.height; } else if (charlie.y > ((cubicon.height / 2) + cubicon.y)) {
+						 * charlie.y = cubicon.y + cubicon.height; } } if (charlie.x != cubicon.x +
+						 * cubicon.width) {
+						 * 
+						 * if (charlie.x < ((cubicon.width / 2) + cubicon.x)) { charlie.x = cubicon.x -
+						 * charlie.width; } else if (charlie.x > ((cubicon.width / 2) + cubicon.x)) {
+						 * charlie.x = cubicon.x + cubicon.width; } } }
+						 */
 					}
 				}
 			}

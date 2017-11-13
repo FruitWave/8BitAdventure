@@ -15,6 +15,9 @@ public class Protagonist extends Object_Shell {
 	int baseVertSpeed;
 	boolean stoppedx;
 	boolean stoppedy;
+	boolean inAir;
+	int gravityAcceleration = 0;
+	boolean onBlock;
 
 	public Protagonist(int x, int y, int width, int height, int baseSpeedo, int baseYSpeed) {
 		super(x, y, width, height);
@@ -28,12 +31,30 @@ public class Protagonist extends Object_Shell {
 		baseVertSpeed = baseYSpeed;
 		xspeed = 0;
 		yspeed = 0;
-		speedThroughBlock = 10;
+		speedThroughBlock = 0;
 		scrollAffected = false;
+		inAir = true;
 	}
 
 	public void update() {
 		super.update();
+		inAir = onBlock ? false : true;
+		if (inAir && stoppedy) {
+			stoppedy = false;
+		}
+		if (!inAir) {
+			gravityAcceleration = 0;
+		} else {
+			if (yspeed <= 0) {
+
+				if (gravityAcceleration >= 5) {
+					gravityAcceleration = 5;
+				}
+				gravityAcceleration++;
+				y += gravityAcceleration;
+
+			}
+		}
 		if (xspeed != 0) {
 			stoppedx = false;
 		} else {

@@ -17,18 +17,21 @@ public class Block extends Object_Shell {
 	int hardness;
 	boolean solid;
 
-	public Block(int x, int y, int width, int height, int type_num) {
+	public Block(int x, int y, int width, int height, int type_num, int initialhardness) {
 		super(x, y, width, height);
 		scrollAffected = true;
 		this.typeNum = type_num;
 		setTypeBlowBubble(type_num);
-		hardness = 10;
+		hardness = initialhardness;
 		solid = true;
 	}
 
 	@Override
 	public void update() {
 		super.update();
+		if (solid) {
+			hardness = 10;
+		}
 	}
 
 	private void setTypeBlowBubble(int typeNumber) {

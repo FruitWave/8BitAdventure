@@ -168,16 +168,17 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 			int r = new Random().nextInt(2);
 			r++;
 			if (r == 1) {
-				justdirt = new Block(i * dirtbubble.getWidth(), Runner.height - dirtbubble.getHeight(), 200, 200, 2);
+				justdirt = new Block(i * dirtbubble.getWidth(), Runner.height - dirtbubble.getHeight(), 200, 200, 2,
+						10);
 				mani.addObject(justdirt);
 			} else {
 				yourbasicbounce = new Block(i * dirtbubble.getWidth(), Runner.height - dirtbubble.getHeight(), 200, 200,
-						0);
+						0, 10);
 				mani.addObject(yourbasicbounce);
 			}
 
 		}
-		xeni = new Protagonist(960, 540, 200, 250, 5, 5);
+		xeni = new Protagonist(Runner.width / 2, 540, 200, 250, 5, 5);
 		mani.addObject(xeni);
 	}
 
