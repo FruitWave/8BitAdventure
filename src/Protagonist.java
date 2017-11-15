@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Protagonist extends Object_Shell {
+	Glasspane glassic;
 	int xspeed;
 	int yspeed;
 	/*
@@ -18,6 +19,7 @@ public class Protagonist extends Object_Shell {
 	boolean inAir;
 	int gravityAcceleration = 0;
 	boolean onBlock;
+	Block onWhichBlock;
 
 	public Protagonist(int x, int y, int width, int height, int baseSpeedo, int baseYSpeed) {
 		super(x, y, width, height);
@@ -39,6 +41,19 @@ public class Protagonist extends Object_Shell {
 	public void update() {
 		super.update();
 		inAir = onBlock ? false : true;
+		if (glassic.mani != null) {
+
+			for (int i = 0; i < glassic.mani.objects.size(); i++) {
+				if (glassic.mani.objects.get(i) instanceof Block) {
+					Block onWhichBlock = (Block) glassic.mani.objects.get(i);
+					if (collisionArea.intersects(onWhichBlock.collisionArea)) {
+						y = onWhichBlock.y - height + 1;
+						onBlock = true;
+					}
+				}
+			}
+		}
+
 		if (inAir && stoppedy) {
 			stoppedy = false;
 		}
@@ -73,41 +88,6 @@ public class Protagonist extends Object_Shell {
 		if (!stoppedx) {
 			isgoingright = xspeed > 0 ? true : false;
 		}
-		// if (left) {
-		// xspeed = -1;
-		// right = false;
-		// }
-		// if (right) {
-		// xspeed = 1;
-		// left = false;
-		// }
-		// if (up) {
-		// yspeed = -1;
-		// down = false;
-		// }
-		// if (down) {
-		// yspeed = 1;
-		// up = false;
-		// }
-		//
-		// if (!left && !right) {
-		// xspeed = 0;
-		// }
-		// if (!up && !down) {
-		// yspeed = 0;
-		// }
-		// if (!up) {
-		// yspeed = 0;
-		// }
-		// if (!down) {
-		// yspeed = 0;
-		// }
-
-		/*
-		 * x += xspeed;
-		 * 
-		 * y += yspeed;
-		 */
 
 	}
 

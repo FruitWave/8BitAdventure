@@ -30,9 +30,9 @@ public class Manipulator {
 			Object_Shell o = objects.get(i);
 			o.update();
 		}
-		checkCollision();
+		// checkCollision();
 		scroll(panelite.xeni.isgoingright, panelite.xeni.isgoingdown);
-		// purgeObjects();
+		purgeObjects();
 	}
 
 	public void draw(Graphics g) {
@@ -98,47 +98,62 @@ public class Manipulator {
 						// System.out.println("Protagonist & Block");
 						Protagonist charlie = (o1 instanceof Protagonist) ? (Protagonist) o1 : (Protagonist) o2;
 						Block cubicon = (o1 instanceof Block) ? (Block) o1 : (Block) o2;
-						// charlie.onBlock = true;
-						// charlie.inAir = false;
-						// if (cubicon.hardness == 0) {
-						//
-						// }
-						charlie.speedThroughBlock = charlie.xspeed / 2;
-						if (charlie.xspeed > 0) {
-							charlie.xspeed = charlie.speedThroughBlock;
-						} else if (charlie.xspeed < 0) {
-							charlie.xspeed = -charlie.speedThroughBlock;
-						}
-						if (charlie.yspeed > 0) {
-							charlie.yspeed = charlie.speedThroughBlock;
-						} else if (charlie.yspeed < 0) {
-							charlie.yspeed = -charlie.speedThroughBlock;
-						}
-						/*
-						 * charlie.speedThroughBlock = cubicon.solid ? (charlie.xspeed != 0 ?
-						 * charlie.xspeed : charlie.yspeed) : 5; if (charlie.xspeed != 0) { if
-						 * (charlie.xspeed > 0) { charlie.xspeed -= charlie.speedThroughBlock;
-						 * System.out.println(charlie.xspeed); } else if (charlie.xspeed < 0) {
-						 * charlie.xspeed += charlie.speedThroughBlock; } } if (charlie.yspeed != 0) {
-						 * if (charlie.yspeed > 0) { charlie.yspeed -= charlie.speedThroughBlock; } else
-						 * if (charlie.yspeed < 0) { charlie.yspeed += charlie.speedThroughBlock; } }
-						 */
 
-						// // charlie.yspeed = charlie.speedThroughBlock;
-						/*
-						 * if (cubicon.solid) { // if (charlie.onBlock = true) { // charlie.yspeed = 0;
-						 * // } if ((charlie.y != cubicon.y + cubicon.height) && (charlie.y +
-						 * charlie.height != cubicon.y)) {
-						 * 
-						 * if (charlie.y < ((cubicon.height / 2) + cubicon.y)) { charlie.y = cubicon.y -
-						 * charlie.height; } else if (charlie.y > ((cubicon.height / 2) + cubicon.y)) {
-						 * charlie.y = cubicon.y + cubicon.height; } } if (charlie.x != cubicon.x +
-						 * cubicon.width) {
-						 * 
-						 * if (charlie.x < ((cubicon.width / 2) + cubicon.x)) { charlie.x = cubicon.x -
-						 * charlie.width; } else if (charlie.x > ((cubicon.width / 2) + cubicon.x)) {
-						 * charlie.x = cubicon.x + cubicon.width; } } }
-						 */
+						// charlie.speedThroughBlock = charlie.xspeed / 2;
+						// if (charlie.xspeed > 0) {
+						// charlie.xspeed = charlie.speedThroughBlock;
+						// } else if (charlie.xspeed < 0) {
+						// charlie.xspeed = -charlie.speedThroughBlock;
+						// }
+						// if (charlie.yspeed > 0) {
+						// charlie.yspeed = charlie.speedThroughBlock;
+						// } else if (charlie.yspeed < 0) {
+						// charlie.yspeed = -charlie.speedThroughBlock;
+						// }
+						//
+						// charlie.speedThroughBlock = cubicon.solid
+						// ? (charlie.xspeed != 0 ? charlie.xspeed : charlie.yspeed)
+						// : 5;
+						// if (charlie.xspeed != 0) {
+						// if (charlie.xspeed > 0) {
+						// charlie.xspeed -= charlie.speedThroughBlock;
+						// System.out.println(charlie.xspeed);
+						// } else if (charlie.xspeed < 0) {
+						// charlie.xspeed += charlie.speedThroughBlock;
+						// }
+						// }
+						// if (charlie.yspeed != 0) {
+						// if (charlie.yspeed > 0) {
+						// charlie.yspeed -= charlie.speedThroughBlock;
+						// } else if (charlie.yspeed < 0) {
+						// charlie.yspeed += charlie.speedThroughBlock;
+						// }
+						// }
+
+						// if (cubicon.speedThroughBlock == 0) {
+						// if (charlie.onBlock = true) {
+						// charlie.yspeed = cubicon.speedThroughBlock;
+						//
+						// if ((charlie.y != cubicon.y + cubicon.height)
+						// && (charlie.y != cubicon.y - charlie.height)) {
+						//
+						// if (charlie.y < ((cubicon.height / 2) + cubicon.y)) {
+						// charlie.y = cubicon.y - charlie.height;
+						// } else if (charlie.y > ((cubicon.height / 2) + cubicon.y)) {
+						// charlie.y = cubicon.y + cubicon.height;
+						// }
+						// }
+						// }
+						// if (charlie.x != cubicon.x + cubicon.width) {
+						//
+						// if (charlie.x < ((cubicon.width / 2) + cubicon.x)) {
+						// charlie.x = cubicon.x - charlie.width;
+						// } else if (charlie.x > ((cubicon.width / 2) + cubicon.x)) {
+						// charlie.x = cubicon.x + cubicon.width;
+						// }
+						// }
+						// }
+
 					}
 				}
 			}

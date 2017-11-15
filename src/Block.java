@@ -14,8 +14,10 @@ public class Block extends Object_Shell {
 	String powerup = "powerup";
 	String cave = "cave";
 	String error = "error";
+	String nothing = "nothing";
 	int hardness;
 	boolean solid;
+	int speedThroughBlock;
 
 	public Block(int x, int y, int width, int height, int type_num, int initialhardness) {
 		super(x, y, width, height);
@@ -35,31 +37,32 @@ public class Block extends Object_Shell {
 	}
 
 	private void setTypeBlowBubble(int typeNumber) {
-		// System.out.println("settypeblowbubble reached");
 		switch (typeNumber) {
 		case 0:
+			species = nothing;
+		case 1:
 			species = bounce;
 			// System.out.println("its bouncy!");
 			bubble = Glasspane.bouncebubble;
 			break;
-		case 1:
+		case 2:
 			species = rock;
 			bubble = Glasspane.rockbubble;
 			break;
-		case 2:
+		case 3:
 			species = dirt;
 			bubble = Glasspane.dirtbubble;
 			// System.out.println("dirt block set");
 			break;
-		case 3:
+		case 4:
 			species = power;
 			bubble = Glasspane.powerbubble;
 			break;
-		case 4:
+		case 5:
 			species = powerup;
 			bubble = Glasspane.powerupbubble;
 			break;
-		case 5:
+		case 6:
 			species = cave;
 			bubble = caveBubble();
 			break;
@@ -70,28 +73,56 @@ public class Block extends Object_Shell {
 		}
 	}
 
+	public int setspeedThroughBlock(String speciesName) {
+
+		switch (species) {
+		case "nothing":
+			return 0;
+		case "bounce":
+			return 0;
+		case "rock":
+			return 0;
+		case "dirt":
+			return 1;
+		case "power":
+			return 5;
+		case "powerup":
+			return 10;
+		default:
+			species = error;
+			bubble = Glasspane.errorbubble;
+			return 0;
+		}
+	}
+
 	private BufferedImage caveBubble() {
 		int blower = new Random().nextInt(typeNum);
 		BufferedImage vladimir;
 		switch (blower) {
 		case 0:
 			vladimir = Glasspane.bouncebubble;
+			speedThroughBlock = 0;
 			break;
 		case 1:
 			vladimir = Glasspane.rockbubble;
+			speedThroughBlock = 0;
 			break;
 		case 2:
 			vladimir = Glasspane.dirtbubble;
+			speedThroughBlock = 1;
 			break;
 		case 3:
 			vladimir = Glasspane.powerbubble;
+			speedThroughBlock = 5;
 			break;
 		case 4:
 			vladimir = Glasspane.powerupbubble;
+			speedThroughBlock = 10;
 			break;
 		default:
-			vladimir = Glasspane.bouncebubble;
+			vladimir = Glasspane.errorbubble;
 			Error broken_link = new Error("Error! caveBubble method is not working!");
+			broken_link.printStackTrace();
 			break;
 		}
 		return vladimir;
@@ -99,14 +130,11 @@ public class Block extends Object_Shell {
 
 	@Override
 	public void draw(Graphics ohboy) {
-		// TODO Auto-generated method stub
-		// System.out.println("Block draw call submitted by Block");
-		if (bubble != null) {
+
+		if ((bubble != null) && (species != nothing)) {
 			width = bubble.getWidth();
 			height = bubble.getHeight();
-			ohboy.drawImage(bubble, x, y, width, height, null);
-			ohboy.setColor(Color.red);
-			ohboy.drawRect(300, 500, 300, 300);
+
 		}
 
 	}
