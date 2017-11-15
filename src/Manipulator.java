@@ -25,6 +25,9 @@ public class Manipulator {
 	}
 
 	public void update() {
+		
+		
+		
 
 		for (int i = 0; i < objects.size(); i++) {
 			Object_Shell o = objects.get(i);
@@ -56,12 +59,12 @@ public class Manipulator {
 			Object_Shell o = objects.get(i);
 
 			if (o.scrollAffected) {
-				if ((panelite.xeni.x != Runner.width / 2) && (!panelite.xeni.stoppedx)) {
+				if ((panelite.xeni.x != Runner.width / 2)/* && (!panelite.xeni.stoppedx)*/) {
 					int priordist = panelite.xeni.x - o.x;
 					panelite.xeni.x = Runner.width / 2;
 					o.x = panelite.xeni.x - priordist;
 				}
-				if ((panelite.xeni.y != Runner.height / 2) && (!panelite.xeni.stoppedy)) {
+				if ((panelite.xeni.y != Runner.height / 2) /*&& (!panelite.xeni.stoppedy)*/) {
 					int priordisty = panelite.xeni.y - o.y;
 					panelite.xeni.y = Runner.height / 2;
 					o.y = panelite.xeni.y - priordisty;

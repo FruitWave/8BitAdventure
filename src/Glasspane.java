@@ -81,7 +81,10 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			xeni.yspeed = xeni.baseVertSpeed;
+			if (!xeni.floatingNecessaryToAvoidBlockCollision) {
+				xeni.yspeed = xeni.baseVertSpeed;
+			}
+
 			// System.out.println("Dwn true. Y speed is " + xeni.yspeed);
 
 		}
@@ -161,28 +164,30 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 		mani = new Manipulator(this);
 		gameSpeed.start();
 		int runwidth = Runner.width;
-		for (int i = 0; runwidth > 0; i++) {
+		for (int i = 0; runwidth > -4000/* 0 */; i++) {
 			int r = new Random().nextInt(2);
-			r++;
-			if (r == 1) {
+
+			if (r == 0) {
 				justdirt = new Block(i * dirtbubble.getWidth(), Runner.height - dirtbubble.getHeight(), 200, 200, 3,
 						10);
 				mani.addObject(justdirt);
 				runwidth -= dirtbubble.getWidth();
 			} else {
-				yourbasicbounce = new Block(i * dirtbubble.getWidth(), Runner.height - dirtbubble.getHeight(), 200, 200,
-						1, 10);
+				yourbasicbounce = new Block(i * bouncebubble.getWidth(), Runner.height - bouncebubble.getHeight(), 200,
+						200, 1, 10);
 				mani.addObject(yourbasicbounce);
 				runwidth -= bouncebubble.getWidth();
 			}
 		}
-		xeni = new Protagonist(Runner.width / 2, 540, 200, 250, 5, 5, this);
+		xeni = new Protagonist(Runner.width / 2, Runner.height / 2, 200, 250, 5, 15, this);
+		// Block dirtlike = new Block(Runner.width / 2, (Runner.height / 2) +
+		// dirtbubble.getHeight(), 200, 200, 3, 10);
+		// mani.addObject(dirtlike);
 		mani.addObject(xeni);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		// System.out.println("repaint");
 		// if (e.getSource() == gameSpeed) {
 		// System.out.println("action performed ");

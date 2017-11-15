@@ -16,6 +16,7 @@ public class Block extends Object_Shell {
 	String error = "error";
 	String nothing = "nothing";
 	int speedThroughBlock;
+	boolean solid;
 
 	public Block(int x, int y, int width, int height, int type_num, int speedThroughBlock) {
 		super(x, y, width, height);
@@ -23,6 +24,7 @@ public class Block extends Object_Shell {
 		this.typeNum = type_num;
 		setTypeBlowBubble(type_num);
 		this.speedThroughBlock = speedThroughBlock;
+		solid = false;
 	}
 
 	@Override
@@ -72,16 +74,22 @@ public class Block extends Object_Shell {
 
 		switch (species) {
 		case "nothing":
+			solid = true;
 			return 0;
 		case "bounce":
+			solid = true;
 			return 0;
 		case "rock":
+			solid = true;
 			return 0;
 		case "dirt":
+			solid = false;
 			return 1;
 		case "power":
+			solid = false;
 			return 5;
 		case "powerup":
+			solid = false;
 			return 10;
 		default:
 			species = error;
