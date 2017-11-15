@@ -155,30 +155,28 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	}
 
+	// what is the purpose of the 'i' for loop enclosing the 'j' for
+	// loop? ANSWER: 2-dimensional hashmap basically (think matrix of objects)
 	public void startGame() {
-		// System.out.println("started game");
 		mani = new Manipulator(this);
-		// what is the purpose of the 'i' for loop enclosing the 'j' for
-		// loop? ANSWER: 2-dimensional hashmap basically (think matrix of objects)
 		gameSpeed.start();
-
 		int runwidth = Runner.width;
 		for (int i = 0; runwidth > 0; i++) {
-			runwidth -= dirtbubble.getWidth();
 			int r = new Random().nextInt(2);
 			r++;
 			if (r == 1) {
 				justdirt = new Block(i * dirtbubble.getWidth(), Runner.height - dirtbubble.getHeight(), 200, 200, 3,
 						10);
 				mani.addObject(justdirt);
+				runwidth -= dirtbubble.getWidth();
 			} else {
 				yourbasicbounce = new Block(i * dirtbubble.getWidth(), Runner.height - dirtbubble.getHeight(), 200, 200,
 						1, 10);
 				mani.addObject(yourbasicbounce);
+				runwidth -= bouncebubble.getWidth();
 			}
-
 		}
-		xeni = new Protagonist(Runner.width / 2, 540, 200, 250, 5, 5);
+		xeni = new Protagonist(Runner.width / 2, 540, 200, 250, 5, 5, this);
 		mani.addObject(xeni);
 	}
 

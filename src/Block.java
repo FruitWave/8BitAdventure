@@ -15,25 +15,20 @@ public class Block extends Object_Shell {
 	String cave = "cave";
 	String error = "error";
 	String nothing = "nothing";
-	int hardness;
-	boolean solid;
 	int speedThroughBlock;
 
-	public Block(int x, int y, int width, int height, int type_num, int initialhardness) {
+	public Block(int x, int y, int width, int height, int type_num, int speedThroughBlock) {
 		super(x, y, width, height);
 		scrollAffected = true;
 		this.typeNum = type_num;
 		setTypeBlowBubble(type_num);
-		hardness = initialhardness;
-		solid = true;
+		this.speedThroughBlock = speedThroughBlock;
 	}
 
 	@Override
 	public void update() {
 		super.update();
-		if (solid) {
-			hardness = 10;
-		}
+		speedThroughBlock = setspeedThroughBlock(species);
 	}
 
 	private void setTypeBlowBubble(int typeNumber) {
@@ -131,10 +126,10 @@ public class Block extends Object_Shell {
 	@Override
 	public void draw(Graphics ohboy) {
 
-		if ((bubble != null) && (species != nothing)) {
+		if ((bubble != null)/* && (species != nothing) */) {
 			width = bubble.getWidth();
 			height = bubble.getHeight();
-
+			ohboy.drawImage(bubble, x, y, width, height, null);
 		}
 
 	}

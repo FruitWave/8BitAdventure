@@ -11,7 +11,7 @@ public class Protagonist extends Object_Shell {
 	 */
 	boolean isgoingright;
 	boolean isgoingdown;
-	int speedThroughBlock;
+	int protagonistSpeedThroughBlock;
 	int baseSpeed;
 	int baseVertSpeed;
 	boolean stoppedx;
@@ -21,7 +21,7 @@ public class Protagonist extends Object_Shell {
 	boolean onBlock;
 	Block onWhichBlock;
 
-	public Protagonist(int x, int y, int width, int height, int baseSpeedo, int baseYSpeed) {
+	public Protagonist(int x, int y, int width, int height, int baseSpeedo, int baseYSpeed, Glasspane glassic) {
 		super(x, y, width, height);
 		// left = false;
 		// up = false;
@@ -33,43 +33,55 @@ public class Protagonist extends Object_Shell {
 		baseVertSpeed = baseYSpeed;
 		xspeed = 0;
 		yspeed = 0;
-		speedThroughBlock = 0;
+		protagonistSpeedThroughBlock = 0;
 		scrollAffected = false;
-		inAir = true;
+		this.glassic = glassic;
+		onBlock = false;
+		isgoingdown = true;
 	}
 
 	public void update() {
-		super.update();
-		inAir = onBlock ? false : true;
-		if (glassic.mani != null) {
+		protagonistSpeedThroughBlock = onWhichBlock != null ? onWhichBlock.speedThroughBlock : 0;
 
+		// if (yspeed > 0 /* going down */) {
+		// yspeed -= 10 - protagonistSpeedThroughBlock;
+		// } else if (yspeed < 0) /* going up */ {
+		// yspeed += 10 - protagonistSpeedThroughBlock;
+		// }
+
+		yspeed += isgoingdown ? protagonistSpeedThroughBlock - 10 : 10 - protagonistSpeedThroughBlock;
+		if (onBlock) {
+			gravityAcceleration = 0;
+			yspeed = 0;
+		} else {
+			if (gravityAcceleration >= 5) {
+				gravityAcceleration = 5;
+			}
+			gravityAcceleration++;
+			yspeed += gravityAcceleration;
+
+		}
+		super.update();
+		if (glassic.mani != null) {
+			int definitelyOnABlock = 0;
 			for (int i = 0; i < glassic.mani.objects.size(); i++) {
 				if (glassic.mani.objects.get(i) instanceof Block) {
-					Block onWhichBlock = (Block) glassic.mani.objects.get(i);
-					if (collisionArea.intersects(onWhichBlock.collisionArea)) {
+					Block temp = (Block) glassic.mani.objects.get(i);
+					if (collisionArea.intersects(temp.collisionArea)) {
+						Block onWhichBlock = temp;
 						y = onWhichBlock.y - height + 1;
-						onBlock = true;
+						definitelyOnABlock++;
 					}
 				}
+
 			}
+			onBlock = definitelyOnABlock > 0 ? true : false;
 		}
 
-		if (inAir && stoppedy) {
+		if (!onBlock && stoppedy) {
 			stoppedy = false;
 		}
-		if (!inAir) {
-			gravityAcceleration = 0;
-		} else {
-			if (yspeed <= 0) {
 
-				if (gravityAcceleration >= 5) {
-					gravityAcceleration = 5;
-				}
-				gravityAcceleration++;
-				y += gravityAcceleration;
-
-			}
-		}
 		if (xspeed != 0) {
 			stoppedx = false;
 		} else {
