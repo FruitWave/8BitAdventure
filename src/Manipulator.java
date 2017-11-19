@@ -30,7 +30,7 @@ public class Manipulator {
 			Object_Shell o = objects.get(i);
 			o.update();
 		}
-		// checkCollision();
+		checkCollision();
 		scroll(panelite.xeni.isgoingright, panelite.xeni.isgoingdown);
 		purgeObjects();
 	}
@@ -56,16 +56,17 @@ public class Manipulator {
 			Object_Shell o = objects.get(i);
 
 			if (o.scrollAffected) {
-				if ((panelite.xeni.x != Runner.width / 2) && (!panelite.xeni.stoppedx)) {
-					int priordist = panelite.xeni.x - o.x;
-					panelite.xeni.x = Runner.width / 2;
-					o.x = panelite.xeni.x - priordist;
-				}
-				if ((panelite.xeni.y != Runner.height / 2) && (!panelite.xeni.stoppedy)) {
-					int priordisty = panelite.xeni.y - o.y;
-					panelite.xeni.y = Runner.height / 2;
-					o.y = panelite.xeni.y - priordisty;
-				}
+				// if ((panelite.xeni.x != Runner.width / 2) && (!panelite.xeni.stoppedx)) {
+				// int priordist = panelite.xeni.x - o.x;
+				// panelite.xeni.x = Runner.width / 2;
+				// o.x = panelite.xeni.x - priordist;
+				// }
+				// if ((panelite.xeni.y != Runner.height / 2) && (!panelite.xeni.stoppedy)) {
+				// int priordisty = panelite.xeni.y - o.y;
+				// panelite.xeni.y = Runner.height / 2;
+				// o.y = panelite.xeni.y - priordisty;
+				// }
+
 				if (!panelite.xeni.stoppedx) {
 					o.x += -panelite.xeni.xspeed;
 					// System.out.println("reached x move");
@@ -83,21 +84,35 @@ public class Manipulator {
 
 			}
 		}
+
 	}
 
 	public void checkCollision() {
+		// System.out.println("ran");
 		for (int i = 0; i < objects.size(); i++) {
+			// System.out.println("crosschecking objects...");
 			for (int j = i + 1; j < objects.size(); j++) {
+				// System.out.println("crosscheck complete");
 				Object_Shell o1 = objects.get(i);
 				Object_Shell o2 = objects.get(j);
-				if ((o1.collisionArea.intersects(o2.collisionArea))
-						|| (o2.collisionArea.intersects(o1.collisionArea))) {
+				if ((panelite.xeni.collisionArea.intersects(o2.collisionArea))
+						|| (o2.collisionArea.intersects(panelite.xeni.collisionArea))) {
+					// System.out.println("Match found!");
 					if ((o1 instanceof Protagonist && o2 instanceof Block)
 							|| (o2 instanceof Protagonist && o1 instanceof Block)) {
+						// System.out.println("Match is between instanceof PROTAGONIST and instanceof
+						// BLOCK");
 						Protagonist charlie = (o1 instanceof Protagonist) ? (Protagonist) o1 : (Protagonist) o2;
 						Block cubicon = (o1 instanceof Block) ? (Block) o1 : (Block) o2;
-
+						charlie.onWhichBlock = cubicon;
+						// charlie.y = cubicon.y - cubicon.height + 1;
+						charlie.onBlock = true;
+						// System.out.println("OnWhichBlock: " + charlie.onWhichBlock);
+						// System.out.println("On Block");
 					}
+				} else {
+					// System.out.println("No matches found.");
+					panelite.xeni.onBlock = false;
 				}
 			}
 		}

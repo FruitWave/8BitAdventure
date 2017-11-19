@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.FileReader;
 
 public class Protagonist extends Object_Shell {
 	Glasspane glassic;
@@ -20,6 +21,7 @@ public class Protagonist extends Object_Shell {
 	int gravityAcceleration = 0;
 	boolean onBlock;
 	Block onWhichBlock;
+	int sinkStep;
 
 	public Protagonist(int x, int y, int width, int height, int baseSpeedo, int baseYSpeed, Glasspane glassic) {
 		super(x, y, width, height);
@@ -38,9 +40,14 @@ public class Protagonist extends Object_Shell {
 		this.glassic = glassic;
 		onBlock = false;
 		isgoingdown = true;
+		sinkStep = 0;
 	}
 
 	public void update() {
+		
+
+		super.update();
+		System.out.println(onBlock);
 		protagonistSpeedThroughBlock = onWhichBlock != null ? onWhichBlock.speedThroughBlock : 0;
 
 		// if (yspeed > 0 /* going down */) {
@@ -49,34 +56,25 @@ public class Protagonist extends Object_Shell {
 		// yspeed += 10 - protagonistSpeedThroughBlock;
 		// }
 
-		yspeed += isgoingdown ? protagonistSpeedThroughBlock - 10 : 10 - protagonistSpeedThroughBlock;
+		// if (onBlock) {
+		// gravityAcceleration = 0;
+		// yspeed = 0;
+		// } else {
+		// gravityAcceleration++;
+		// if (gravityAcceleration >= 5) {
+		// gravityAcceleration = 5;
+		// }
 		if (onBlock) {
-			gravityAcceleration = 0;
-			yspeed = 0;
+			System.out.println(onWhichBlock.species);
+
+			System.out.println("Block height: " + onWhichBlock.bubble.getHeight());
+			runONBLOCKprotocol();
 		} else {
-			if (gravityAcceleration >= 5) {
-				gravityAcceleration = 5;
-			}
-			gravityAcceleration++;
-			yspeed += gravityAcceleration;
+			onWhichBlock = null;
+			gravityAcceleration = 1;
 
 		}
-		super.update();
-		if (glassic.mani != null) {
-			int definitelyOnABlock = 0;
-			for (int i = 0; i < glassic.mani.objects.size(); i++) {
-				if (glassic.mani.objects.get(i) instanceof Block) {
-					Block temp = (Block) glassic.mani.objects.get(i);
-					if (collisionArea.intersects(temp.collisionArea)) {
-						Block onWhichBlock = temp;
-						y = onWhichBlock.y - height + 1;
-						definitelyOnABlock++;
-					}
-				}
-
-			}
-			onBlock = definitelyOnABlock > 0 ? true : false;
-		}
+		// }
 
 		if (!onBlock && stoppedy) {
 			stoppedy = false;
@@ -100,7 +98,24 @@ public class Protagonist extends Object_Shell {
 		if (!stoppedx) {
 			isgoingright = xspeed > 0 ? true : false;
 		}
+		if (!onBlock) {
+			yspeed += gravityAcceleration;
+		} else {
+			if (yspeed > 0) {
+				y += gravityAcceleration;
+			}
+		}
+	}
 
+	private void runONBLOCKprotocol() {
+		int speed = onWhichBlock.speedThroughBlock;
+		gravityAcceleration = 0;
+		sinkStep++;
+		if (sinkStep % 10 == 0) {
+			y += speed;
+		} else {
+			yspeed = 0;
+		}
 	}
 
 	public void draw(Graphics g) {

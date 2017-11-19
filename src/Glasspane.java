@@ -182,8 +182,6 @@ public class Glasspane extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		// System.out.println("repaint");
 		// if (e.getSource() == gameSpeed) {
 		// System.out.println("action performed ");
 		repaint();

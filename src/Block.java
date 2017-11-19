@@ -74,7 +74,7 @@ public class Block extends Object_Shell {
 		case "nothing":
 			return 0;
 		case "bounce":
-			return 0;
+			return 1;
 		case "rock":
 			return 0;
 		case "dirt":
@@ -82,7 +82,7 @@ public class Block extends Object_Shell {
 		case "power":
 			return 5;
 		case "powerup":
-			return 10;
+			return 5;
 		default:
 			species = error;
 			bubble = Glasspane.errorbubble;
